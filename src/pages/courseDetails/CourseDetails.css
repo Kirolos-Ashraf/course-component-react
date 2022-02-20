@@ -13,10 +13,13 @@ body {
 }
 
 div.stars {
-     width: 170px;
+
      display: inline-block
 }
 
+.h-2-5rem { 
+     height: 2.5rem;
+}
 
 
 input.star {
@@ -24,7 +27,7 @@ input.star {
 }
 
 label.star {
-
+     float: right;
      padding-right: 4px;
      font-size: 24px;
      color: #4A148C;
