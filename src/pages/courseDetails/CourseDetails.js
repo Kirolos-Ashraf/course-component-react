@@ -1,11 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 import JS from "./images/js.png";
 import "./CourseDetails.css";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams, useHistory } from "react-router-dom";
+
 
 export default function CourseDetails() {
-
+  const [courseDetails, setCourseDetails] = useState({})
   const history = useHistory()
+  const params = useParams()
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4000/details/${params.name}`)
+      .then((req, res) => {
+        // console.log(req.data)
+        setCourseDetails(req.data)
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <section className="courseDetails py-5 ">
@@ -15,15 +29,13 @@ export default function CourseDetails() {
 
 
             <div className="imgCard w-50 ">
-              <img src={JS} alt="JS" className="w-100 h-100" />
+              <img src={courseDetails.imageSrc} alt="JS" className="w-100 h-100" />
             </div>
 
             <div className="courseInfo  ">
-              <h2>Javascript course</h2>
+              <h2>{courseDetails.name}</h2>
               <p className="lead my-1">
-                JavaScript (often shortened to JS) is a lightweight,
-                interpreted, object-oriented language with first-class
-                functions,
+                {courseDetails.description}
               </p>
               <div className="h-2-5rem">
                 <div className="h-100">
@@ -43,6 +55,7 @@ export default function CourseDetails() {
                           id="star-4"
                           type="radio"
                           name="star"
+                          value="1"
                         />{" "}
                         <label className="star star-4" htmlFor="star-4"></label>{" "}
                         <input
@@ -72,7 +85,8 @@ export default function CourseDetails() {
                 </div>
               </div>
 
-            <p>created by : Jhon Adelson</p>
+            <p>created by : {courseDetails.created_by}</p>
+            
           
             <button type="button" className="btn btn-warning" onClick={()=> history.push('/coursename')}>Enroll</button>
 

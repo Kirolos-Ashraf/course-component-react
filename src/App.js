@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './pages/navbar/Navbar';
 import Course from './pages/course/Course';
@@ -18,7 +17,7 @@ function App() {
       <Switch>
         <Route path={'/'} exact component={Course} /> 
         <Route path={'/courses'} exact component={Course} /> 
-        <Route path={'/details/:id'} exact component={CourseDetails} /> 
+        <Route path={'/details/:name'} exact component={CourseDetails} /> 
         <Route path={'*'} exact component={NotFound} /> 
         
       </Switch>

@@ -16,8 +16,8 @@ export default function CardsCourses(props) {
         <div className="card-body">
           <h5 className="card-title">{props.courseTitle}</h5>
           <p className="card-text">{props.detailsCourse}</p>
-          <Link to={`/details/2`} className="btn btn-primary">
-            {/* to={`/details/${props.courseName}`} */}
+          <Link to={`/details/${props.name}`} className="btn btn-primary">
+            
             See More
           </Link>
         </div>
